@@ -117,6 +117,14 @@ ORDERNN_CONST = {
     'xpath_character_value': './/td[@class="table-character-value"]/text()'
 }
 
+# Save data
+FEEDS = {
+    'scraped_data_%(time)s.json': {
+        'format': 'json', 
+        'encoding': 'utf-8', 
+        'indent': 4
+    }
+}
 
 # LOGS
 

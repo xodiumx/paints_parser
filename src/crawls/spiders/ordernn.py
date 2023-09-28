@@ -125,3 +125,5 @@ class OrdernnSpider(Spider):
             'characteristics': characteristics_json,
         }
         create_db_objects(ordernn_products, product, self.db_session)
+
+        yield product
