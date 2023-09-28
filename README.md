@@ -28,3 +28,5 @@ PGADMIN_PASSWORD=admin
 ```
 docker-compose up -d
 ```
+
+#### `localhost:5050` - pgAdmin endpoint
