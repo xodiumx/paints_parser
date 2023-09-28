@@ -1,11 +1,8 @@
-# Scrapy settings for test_task project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 BOT_NAME = "test_task"
 
@@ -93,8 +90,21 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 
+# DB settings
+
+DATABASE = {
+   'DB_HOST':  os.getenv('DB_HOST'),
+   'DB_PORT':  os.getenv('DB_PORT'),
+   'DB_NAME':  os.getenv('DB_NAME'),
+   'DB_USER':  os.getenv('DB_USER'),
+   'DB_PASS':  os.getenv('DB_PASS'),
+}
+
+
 # ORDER_NN site constants
 
 ORDERNN_CONST = {
     'xpath_categories': '//a[text()="Краски и материалы специального назначения" or text()="Краски для наружных работ" or text()="Лаки"]/@href',
 }
+
+
