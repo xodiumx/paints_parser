@@ -23,7 +23,7 @@ Task
 ```
 
 ## Установка через docker
-1. Клонируйте репозиторий
+1. Cклонируйте репозиторий
 ```
 git clone git@github.com:xodiumx/test_parser.git
 ```
@@ -31,7 +31,7 @@ git clone git@github.com:xodiumx/test_parser.git
 ```
 cd src
 ```
-2. В директории `scr` создайте `.env` file
+2. В директории `src` создайте `.env` file
 ```
 DB_NAME=ordernn
 DB_HOST=db_parser
