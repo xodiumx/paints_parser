@@ -22,7 +22,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -105,6 +105,19 @@ DATABASE = {
 
 ORDERNN_CONST = {
     'xpath_categories': '//a[text()="Краски и материалы специального назначения" or text()="Краски для наружных работ" or text()="Лаки"]/@href',
+    'xpath_item_urls': '//a[@itemprop="url"]/@href',
+    'xpath_pagination': '//div[@id="all-product"]/text()',
+    'count_items': 30,
+    'xpath_name': '//h1/text()',
+    'xpath_price': '//span[@itemprop="price"]/text()',
+    'xpath_description': '//div[@id="block-description"]/div/p/text()',
+    'endpoint_characterstics': 'https://order-nn.ru/local/ajax/kmo/getCharacterItems.php?type=character&style=element&items=',
+    'xpath_characterstics': '//table[@class="table table-striped table-character"]/tr',
+    'xpath_character_key': './/td[@class="table-character-text"]/text()',
+    'xpath_character_value': './/td[@class="table-character-value"]/text()'
 }
 
 
+# LOGS
+
+LOG_LEVEL = 'ERROR'

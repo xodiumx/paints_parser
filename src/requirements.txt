@@ -1,7 +1,7 @@
 # DB
 asyncpg==0.27.0
-# psycopg2==2.9.3
-psycopg2-binary==2.9.5
+psycopg2==2.9.3
+# psycopg2-binary==2.9.5
 sqlalchemy==2.0.12
 alembic==1.10.4
 
@@ -10,6 +10,8 @@ scrapy==2.10.0
 scrapy-rotating-proxies==0.6.2
 scrapy-fake-useragent==1.4.4
 scrapy-splash==0.9.0
+bs4
+Twisted==22.10.0
 
 # PEP 8
 ruff

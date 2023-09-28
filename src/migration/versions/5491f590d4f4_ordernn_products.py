@@ -24,7 +24,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('name', sa.String(length=512), nullable=True),
     sa.Column('price', sa.Numeric(decimal_return_scale=1), nullable=True),
-    sa.Column('description', sa.String(length=512), nullable=True),
+    sa.Column('description', sa.String(length=2048), nullable=True),
     sa.Column('characteristics', sa.JSON(), nullable=True),
     sa.Column('url', sa.String(length=512), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),

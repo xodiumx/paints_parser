@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+
+  db_parser:
+    build: 
+      dockerfile: ./docker/postgres/Dockerfile
+      context: .
+    container_name: parser_db
+    restart: unless-stopped
+    volumes:
+      - db_parser:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    ports:
+      - '5432:5432'
+
+  parser:
+    build: 
+      dockerfile: ./docker/parser/Dockerfile
+      context: .
+    image: oxdium/parser_test:latest
+    container_name: parser
+    command: ["/parser_app/docker/parser/entrypoint.sh"]
+    depends_on:
+      - db_parser
+    env_file:
+      - ./.env
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    depends_on:
+      - db_parser
+    ports:
+      - '5050:80'
+    env_file:
+      - ./.env
+
+volumes:
+  db_parser:
+  pgadmin:
