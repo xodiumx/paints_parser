@@ -9,12 +9,12 @@
 
 BOT_NAME = "test_task"
 
-SPIDER_MODULES = ["test_task.spiders"]
-NEWSPIDER_MODULE = "test_task.spiders"
+SPIDER_MODULES = ['crawls.spiders']
+NEWSPIDER_MODULE = 'crawls.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "test_task (+http://www.yourdomain.com)"
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -91,3 +91,10 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+
+# ORDER_NN site constants
+
+ORDERNN_CONST = {
+    'xpath_categories': '//a[text()="Краски и материалы специального назначения" or text()="Краски для наружных работ" or text()="Лаки"]/@href',
+}
