@@ -65,5 +65,6 @@ docker-compose up -d
 },
 ]
 ```
+*примеры находятся в директории `examples`*
 
 #### `localhost:5050` - pgAdmin endpoint

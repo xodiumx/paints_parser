@@ -119,10 +119,13 @@ ORDERNN_CONST = {
 
 # Save data
 FEEDS = {
-    'scraped_data_%(time)s.json': {
+    'ordernn_%(time)s.json': {
         'format': 'json', 
         'encoding': 'utf-8', 
         'indent': 4
+    },
+    'ordernn_%(time)s.csv': {
+        'format': 'csv',
     }
 }
 

@@ -4,6 +4,7 @@ import requests
 
 from crawls.settings import ORDERNN_CONST, USER_AGENT
 from core.db_utils import create_db_objects
+from core.utils import get_price
 from db.tables import ordernn_products
 from db.connect import get_session
 
@@ -96,12 +97,14 @@ class OrdernnSpider(Spider):
         name = response.xpath(ORDERNN_CONST['xpath_name']).get()
 
         try:
-            price = float(response.xpath(ORDERNN_CONST['xpath_price']).get())
-        except:
+            price = get_price(
+                response.xpath(ORDERNN_CONST['xpath_price']).get())
+        except Exception as er:
+            print(er)
             price = None
 
+        # TODO: update xpath description
         description = response.xpath(ORDERNN_CONST['xpath_description']).get()
-
         
         characteristics = requests.post(f'{ORDERNN_CONST["endpoint_characterstics"]}{item_id}')
 
