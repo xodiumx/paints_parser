@@ -1,17 +1,15 @@
 from math import ceil
 
 import requests
+from bs4 import BeautifulSoup
+from scrapy import Request, Spider
+from scrapy.http.response.html import HtmlResponse
 
-from crawls.settings import ORDERNN_CONST, USER_AGENT
 from core.db_utils import create_db_objects
 from core.utils import get_price
-from db.tables import ordernn_products
+from crawls.settings import ORDERNN_CONST, USER_AGENT
 from db.connect import get_session
-
-from bs4 import BeautifulSoup
-from scrapy import Spider
-from scrapy import Request
-from scrapy.http.response.html import HtmlResponse
+from db.tables import ordernn_products
 
 
 class OrdernnSpider(Spider):
@@ -64,7 +62,6 @@ class OrdernnSpider(Spider):
                 callback=self.parse_categories,
                 headers={'Connection': 'keep-alive'}
             )
-        
 
     def parse_categories(self, response: HtmlResponse) -> None:
         """Парсинг всех категорий на стартовой странице."""
@@ -76,12 +73,11 @@ class OrdernnSpider(Spider):
                 callback=self.parse_pages,
                 headers={'Connection': 'keep-alive'}
             )
-    
 
     def parse_pages(self, response: HtmlResponse) -> None:
-        """"""
+        """Парсинг страниц товаров."""
         item_urls = self.__get_items_urls(response)
-        
+
         for url in item_urls:
             yield Request(
                 url=f'{self.main_url}{url}',
@@ -89,25 +85,30 @@ class OrdernnSpider(Spider):
                 headers={'Connection': 'keep-alive'}
             )
 
-
     def parse_items(self, response: HtmlResponse) -> None:
         """
-        
-        """ 
+        Парсинг страницы товарв:
+        attributes:
+            - item_id: id товара
+            - name: наименование товара
+            - description: описание товара
+            - price: цена
+            - characteristics_json: словарь с характеристиками товара
+        """
         item_id = response.url.split('/')[-1]
-        
+
         name = response.xpath(ORDERNN_CONST['xpath_name']).get()
 
         try:
             price = get_price(
                 response.xpath(ORDERNN_CONST['xpath_price']).get())
-        except Exception as er:
+        except Exception:
             price = None
 
         description = response.xpath(
             ORDERNN_CONST['xpath_description']).getall()
         description = '\n'.join(text.strip() for text in description)
-        
+
         characteristics = requests.post(
             f'{ORDERNN_CONST["endpoint_characterstics"]}{item_id}')
         soup = BeautifulSoup(characteristics.text, 'html.parser')
@@ -115,12 +116,12 @@ class OrdernnSpider(Spider):
         characteristics_json = dict()
 
         for element in characteristics:
-            
+
             key, value = element.find_all('td')
             key, value = key.text, value.text
 
             characteristics_json[key] = value
-        
+
         product = {
             'name': name,
             'price': price,

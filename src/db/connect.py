@@ -1,9 +1,9 @@
 # =================== Sync connection =================== #
 
-from crawls.settings import DATABASE
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import sessionmaker
 
+from crawls.settings import DATABASE
 
 DB_USER = DATABASE['DB_USER']
 DB_PASS = DATABASE['DB_PASS']

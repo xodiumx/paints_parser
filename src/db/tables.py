@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import (JSON, Column, Date, Integer, Numeric,
-                        String, Table, )
+from sqlalchemy import JSON, Column, Date, Integer, Numeric, String, Table
 
 from db.connect import metadata
 
