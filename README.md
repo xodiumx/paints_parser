@@ -89,6 +89,6 @@ docker-compose up -d
 },
 ]
 ```
-#### *примеры находятся в директории `examples`*
+*примеры находятся в директории `src/analytics/examples`*
 
 #### `localhost:5050` - pgAdmin endpoint
