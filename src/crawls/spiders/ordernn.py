@@ -99,11 +99,8 @@ class OrdernnSpider(Spider):
 
         name = response.xpath(ORDERNN_CONST['xpath_name']).get()
 
-        try:
-            price = get_price(
-                response.xpath(ORDERNN_CONST['xpath_price']).get())
-        except Exception:
-            price = None
+        price = get_price(
+            response.xpath(ORDERNN_CONST['xpath_price']).get())
 
         description = response.xpath(
             ORDERNN_CONST['xpath_description']).getall()
