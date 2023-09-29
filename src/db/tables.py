@@ -17,7 +17,7 @@ ordernn_products = Table(
     ),
     Column(
         'description',
-        String(512),
+        String(10240),
         nullable=True
     ),
     Column('characteristics', JSON, nullable=True, ),

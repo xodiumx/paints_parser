@@ -110,7 +110,7 @@ ORDERNN_CONST = {
     'count_items': 30,
     'xpath_name': '//h1/text()',
     'xpath_price': '//span[@itemprop="price"]/text()',
-    'xpath_description': '//div[@id="block-description"]/div/p/text()',
+    'xpath_description': '//div[@id="block-description"]//text()',
     'endpoint_characterstics': 'https://order-nn.ru/local/ajax/kmo/getCharacterItems.php?type=character&style=element&items=',
     'xpath_characterstics': '//table[@class="table table-striped table-character"]/tr',
     'xpath_character_key': './/td[@class="table-character-text"]/text()',
@@ -126,6 +126,7 @@ FEEDS = {
     },
     'ordernn_%(time)s.csv': {
         'format': 'csv',
+        'fields': ['name','price','url','characteristics']
     }
 }
 

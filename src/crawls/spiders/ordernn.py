@@ -79,7 +79,7 @@ class OrdernnSpider(Spider):
     
 
     def parse_pages(self, response: HtmlResponse) -> None:
-        
+        """"""
         item_urls = self.__get_items_urls(response)
         
         for url in item_urls:
@@ -91,7 +91,9 @@ class OrdernnSpider(Spider):
 
 
     def parse_items(self, response: HtmlResponse) -> None:
-
+        """
+        
+        """ 
         item_id = response.url.split('/')[-1]
         
         name = response.xpath(ORDERNN_CONST['xpath_name']).get()
@@ -100,17 +102,16 @@ class OrdernnSpider(Spider):
             price = get_price(
                 response.xpath(ORDERNN_CONST['xpath_price']).get())
         except Exception as er:
-            print(er)
             price = None
 
-        # TODO: update xpath description
-        description = response.xpath(ORDERNN_CONST['xpath_description']).get()
+        description = response.xpath(
+            ORDERNN_CONST['xpath_description']).getall()
+        description = '\n'.join(text.strip() for text in description)
         
-        characteristics = requests.post(f'{ORDERNN_CONST["endpoint_characterstics"]}{item_id}')
-
+        characteristics = requests.post(
+            f'{ORDERNN_CONST["endpoint_characterstics"]}{item_id}')
         soup = BeautifulSoup(characteristics.text, 'html.parser')
         characteristics = soup.find_all('tr')
-
         characteristics_json = dict()
 
         for element in characteristics:
