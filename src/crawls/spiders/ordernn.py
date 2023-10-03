@@ -5,11 +5,9 @@ from bs4 import BeautifulSoup
 from scrapy import Request, Spider
 from scrapy.http.response.html import HtmlResponse
 
-from core.db_utils import create_db_objects
 from core.utils import get_price
 from crawls.settings import ORDERNN_CONST, USER_AGENT
 from db.connect import get_session
-from db.tables import ordernn_products
 
 
 class OrdernnSpider(Spider):
@@ -126,6 +124,5 @@ class OrdernnSpider(Spider):
             'url': response.url,
             'characteristics': characteristics_json,
         }
-        create_db_objects(ordernn_products, product, self.db_session)
 
         yield product

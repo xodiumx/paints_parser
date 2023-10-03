@@ -13,7 +13,7 @@ def create_db_objects(
     db_session.execute(statement)
     db_session.commit()
 
-    # print(f'{data} занесена в таблицу {table}')
+    print(f'{len(data)} объектов создано в таблице {table}')
 
 
 def get_db_objects(

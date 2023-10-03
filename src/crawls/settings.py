@@ -60,9 +60,9 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "test_task.pipelines.TestTaskPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   'crawls.pipelines.OrdernnPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
